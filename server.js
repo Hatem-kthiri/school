@@ -12,36 +12,37 @@ var allRoutes = require("./routes/routes.js");
 app.use("/", allRoutes);
 
 if (process.env.NODE_ENV === "production") {
-    app.use("/", express.static("client/build"));
+  app.use("/", express.static("client/build"));
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client/build/index.html"));
-    });
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client/build/index.html"));
+  });
 }
 
 const port = process.env.PORT || 5000;
 
-const uri = process.env.MONGO_URI;
+const uri =
+  "mongodb+srv://school:school@school.pd6zg.mongodb.net/schoolmanagement?retryWrites=true&w=majority";
 
 app.get("/", function (req, res) {
-    res.send("This is from Back-end");
+  res.send("This is from Back-end");
 });
 
 app.listen(port, () => {
-    console.log(`APP listening at ${port}`);
+  console.log(`APP listening at ${port}`);
 });
 
 // Connecting to DB
 
 mongoose.connect(
-    uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    },
-    (err) => {
-        if (err) throw err;
-        console.log("Successfully connected to Database");
-    }
+  uri,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("Successfully connected to Database");
+  }
 );
