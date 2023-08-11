@@ -19,7 +19,7 @@ const AllPersonel = () => {
   const handleDelete = (id) => {
     setAllPersonel(allPersonel.filter((el) => el._id !== id));
     axios
-      .delete(`/administation/deletePersonel/${id}`)
+      .delete(`${url}/administation/deletePersonel/${id}`)
       .then((res) => alert("personel Deleted Successfully"))
       .catch((err) => console.log(err));
   };

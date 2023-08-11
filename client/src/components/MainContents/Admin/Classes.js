@@ -32,7 +32,7 @@ const Classes = ({ toggle }) => {
       studentsclass.filter((studentclass) => studentclass._id !== class_id)
     );
     axios
-      .delete(`administration/Class/${class_id}`)
+      .delete(`${url}/administration/Class/${class_id}`)
       .then((res) => {
         console.log(res.data);
       })

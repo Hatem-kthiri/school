@@ -34,7 +34,7 @@ const EditClass = () => {
     newPost.append("name", newTitle);
     if (newTitle !== "") {
       axios
-        .put(`/editClass/${id}`, newPost)
+        .put(`${url}/editClass/${id}`, newPost)
         .then((res) => alert("Class updated "))
         .catch((err) => console.log(err));
     }

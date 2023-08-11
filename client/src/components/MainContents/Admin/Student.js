@@ -62,7 +62,7 @@ const Student = () => {
     );
 
     axios
-      .put(`/administration/updateClass/${id}`, {
+      .put(`${url}/administration/updateClass/${id}`, {
         classRoom: addClass,
       })
       .then((res) => {
@@ -104,7 +104,7 @@ const Student = () => {
         if (result.isConfirmed) {
           setAllStudents(allStudents.filter((student) => student._id !== id));
           axios
-            .delete(`/administation/deleteStudent/${id}`)
+            .delete(`${url}/administation/deleteStudent/${id}`)
             .then((res) => {
               console.log(res.data);
             })

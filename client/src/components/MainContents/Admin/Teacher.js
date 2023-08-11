@@ -55,9 +55,8 @@ const Teacher = ({ toggle }) => {
           } else return teacher;
         })
       );
-      console.log(id);
       axios
-        .put(`/administration/addClass/${id}`, {
+        .put(`${url}/administration/addClass/${id}`, {
           newclass: addClass,
         })
         .then((res) => {
@@ -107,7 +106,7 @@ const Teacher = ({ toggle }) => {
         if (result.isConfirmed) {
           setTeachers(teachers.filter((teacher) => teacher._id !== id));
           axios
-            .delete(`/administation/deleteTeacher/${id}`)
+            .delete(`${url}/administation/deleteTeacher/${id}`)
             .then((res) => {
               console.log(res.data);
             })
