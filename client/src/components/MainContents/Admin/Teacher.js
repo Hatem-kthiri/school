@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Teacher.css";
 import Swal from "sweetalert2";
 import Loader from "react-loader-spinner";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Teacher = ({ toggle }) => {
   // Hooks for Teachers List

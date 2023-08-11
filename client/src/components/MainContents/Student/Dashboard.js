@@ -8,7 +8,7 @@ import { Line } from "react-chartjs-2";
 import Loader from "react-loader-spinner";
 import Notification from "../Personel/Notification";
 import "./Dashboard.css";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Dashboard = () => {
   // data for charts : line

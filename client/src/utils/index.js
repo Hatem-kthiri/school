@@ -1,1 +1,1 @@
-const url = "https://backend-school-coral.vercel.app";
+export const url = "https://backend-school-coral.vercel.app";

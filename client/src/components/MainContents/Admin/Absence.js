@@ -2,7 +2,7 @@ import { MDBDataTable } from "mdbreact";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { useState, useEffect } from "react";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 // import "./Absence.css";
 const Absence = () => {
   //Hooks For All Students List

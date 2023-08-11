@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./StudentProfile.css";
 import Loader from "react-loader-spinner";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const StudentProfile = () => {
   const { id } = useParams();

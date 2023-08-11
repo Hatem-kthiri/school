@@ -1,6 +1,6 @@
 import { GET_EXAMS } from "../constants/actions-types";
 import axios from "axios";
-import url from "../../utils/index";
+import { url } from "../../utils/index";
 export const getExams = (id) => (dispatch) => {
   axios
     .get(`${url}/teacher/getExamsDate/${id}`)

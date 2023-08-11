@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import jwt from "jwt-decode";
 import "./AllStudents.css";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const AllStudents = ({ toggle }) => {
   const token = localStorage.getItem("JWT");

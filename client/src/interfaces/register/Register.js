@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import "./Register.css";
 import { useHistory, NavLink } from "react-router-dom";
 import axios from "axios";
-import url from "../../utils/index";
+import { url } from "../../utils/index";
 
 const Register = () => {
   const history = useHistory();

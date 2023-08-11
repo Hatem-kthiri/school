@@ -4,7 +4,7 @@ import jwt from "jwt-decode";
 import Loader from "react-loader-spinner";
 
 import "./Note.css";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Note = ({ toggle }) => {
   // hooks for Student note

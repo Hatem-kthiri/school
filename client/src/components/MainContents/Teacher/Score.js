@@ -4,7 +4,7 @@ import axios from "axios";
 import { Form, FormControl } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import jwt from "jwt-decode";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Score = ({ toggle }) => {
   const token = localStorage.getItem("JWT");

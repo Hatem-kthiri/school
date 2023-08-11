@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const AddFees = () => {
   const [fees, setNewFees] = useState({});

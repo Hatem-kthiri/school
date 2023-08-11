@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useHistory, NavLink } from "react-router-dom";
-import url from "../../utils/index";
+import { url } from "../../utils/index";
 const Login = () => {
   const history = useHistory();
   const [user, setUser] = useState({});
@@ -14,6 +14,7 @@ const Login = () => {
     axios
       .post(`${url}/login`, user)
       .then((res) => {
+        console.log(res);
         localStorage.setItem("JWT", res.data.data);
         history.push("/dashboard");
         history.go(0);

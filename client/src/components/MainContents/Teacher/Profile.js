@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import jwt from "jwt-decode";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Profile = () => {
   const token = localStorage.getItem("JWT");

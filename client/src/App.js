@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import "./App.css";
-import url from "./utils/index";
+import { url } from "./utils/index";
 
 import Personel from "./interfaces/personel/Personel";
 function App() {

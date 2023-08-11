@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "react-loader-spinner";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 // import "./Student.css";
 const Student = () => {

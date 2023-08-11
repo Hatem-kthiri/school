@@ -3,7 +3,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import "./Classes.css";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Classes = ({ toggle }) => {
   //Hooks For All Classes List

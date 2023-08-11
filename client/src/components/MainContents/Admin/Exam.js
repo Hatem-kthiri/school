@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Loader from "react-loader-spinner";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 import "./Exam.css";
 import { useState, useEffect } from "react";

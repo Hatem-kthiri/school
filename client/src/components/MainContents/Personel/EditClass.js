@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const EditClass = () => {
   const [studentsclass, setStudentsClass] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 const EditNotification = () => {
   const [notifications, setNotifications] = useState([]);
   useEffect(() => {

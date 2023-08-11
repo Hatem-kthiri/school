@@ -3,7 +3,7 @@ import axios from "axios";
 import jwt from "jwt-decode";
 import "./absence.css";
 import Loader from "react-loader-spinner";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Absence = ({ toggle }) => {
   // get th student id from the localStorage

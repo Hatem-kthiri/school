@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 const AllPersonel = () => {
   //Hooks For All Personel List
   const [allPersonel, setAllPersonel] = useState([]);

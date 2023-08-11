@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "quill/dist/quill.snow.css";
 import jwt from "jwt-decode";
 import axios from "axios";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const AddCourse = () => {
   const token = localStorage.getItem("JWT");

@@ -7,7 +7,7 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import url from "../../../utils/index";
+import { url } from "../../../utils/index";
 
 const Exam = ({ toggle }) => {
   // hoook for the calendar events
