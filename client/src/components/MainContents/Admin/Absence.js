@@ -2,6 +2,7 @@ import { MDBDataTable } from "mdbreact";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { useState, useEffect } from "react";
+import url from "../../../utils/index";
 // import "./Absence.css";
 const Absence = () => {
   //Hooks For All Students List
@@ -9,7 +10,7 @@ const Absence = () => {
   // Function Axios Get All Students
   /*************************************/
   const getAllSituation = async () => {
-    const Situation = await axios.get("/administration/GetAllSituation");
+    const Situation = await axios.get(`${url}/administration/GetAllSituation`);
     setAllSituation(Situation.data.data);
   };
   /*************************************/

@@ -1,36 +1,38 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-const AddStudent = () => {
-    const history = useHistory();
-    const [newStudent, setNewStudent] = useState();
-    const handleChange = (e) => {
-        setNewStudent({ ...newStudent, [e.target.name]: e.target.value });
-    };
+import url from "../../../utils/index";
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (
-            newStudent.adress == "" ||
-            newStudent.firstName == "" ||
-            newStudent.lastName == "" ||
-            newStudent.email == "" ||
-            newStudent.age == "" ||
-            newStudent.parentsPhone == ""
-        ) {
-            alert("Please add All fields");
-        } else {
-            axios
-                .post("/admin/addStudent", newStudent)
-                .then(() => history.push("/admin/students"))
-                .catch((err) => console.log(err));
-        }
-    };
-    return (
-        <div class="page-content-wrapper">
-            <div class="page-content">
-                <div class="page-bar">
-                    {/* <div class="page-title-breadcrumb">
+const AddStudent = () => {
+  const history = useHistory();
+  const [newStudent, setNewStudent] = useState();
+  const handleChange = (e) => {
+    setNewStudent({ ...newStudent, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      newStudent.adress == "" ||
+      newStudent.firstName == "" ||
+      newStudent.lastName == "" ||
+      newStudent.email == "" ||
+      newStudent.age == "" ||
+      newStudent.parentsPhone == ""
+    ) {
+      alert("Please add All fields");
+    } else {
+      axios
+        .post(`${url}/admin/addStudent`, newStudent)
+        .then(() => history.push("/admin/students"))
+        .catch((err) => console.log(err));
+    }
+  };
+  return (
+    <div class="page-content-wrapper">
+      <div class="page-content">
+        <div class="page-bar">
+          {/* <div class="page-title-breadcrumb">
                         <div class=" pull-left">
                             <div class="page-title">Add Professor</div>
                         </div>
@@ -51,16 +53,13 @@ const AddStudent = () => {
                             <li class="active">Add Professor</li>
                         </ol>
                     </div> */}
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div
-                            class="card card-box"
-                            style={{ marginTop: "50px" }}
-                        >
-                            <div class="card-head">
-                                <header>Basic Information</header>
-                                {/* <button
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="card card-box" style={{ marginTop: "50px" }}>
+              <div class="card-head">
+                <header>Basic Information</header>
+                {/* <button
                                     id="panel-button"
                                     class="mdl-button mdl-js-button mdl-button--icon pull-right"
                                     data-upgraded=",MaterialButton"
@@ -86,129 +85,109 @@ const AddStudent = () => {
                                         Something else here
                                     </li>
                                 </ul> */}
-                            </div>
-                            <div class="card-body" id="bar-parent">
-                                <form
-                                    action="#"
-                                    id="form_sample_1"
-                                    class="form-horizontal"
-                                >
-                                    <div class="form-body">
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                First Name
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="firstName"
-                                                    data-required="1"
-                                                    placeholder="enter first name"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Last Name
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="lastName"
-                                                    data-required="1"
-                                                    placeholder="enter last name"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Email
-                                            </label>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </span>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control input-height"
-                                                        name="email"
-                                                        placeholder="Email Address"
-                                                        onChange={handleChange}
-                                                    />{" "}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Age
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="number"
-                                                    name="age"
-                                                    data-required="1"
-                                                    placeholder="enter student age"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Parent Phone
-                                            </label>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-phone"></i>
-                                                    </span>
-                                                    <input
-                                                        type="number"
-                                                        class="form-control input-height"
-                                                        name="parentsPhone"
-                                                        placeholder="Enter Student Parent Phone"
-                                                        onChange={handleChange}
-                                                    />{" "}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Address
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="adress"
-                                                    data-required="1"
-                                                    placeholder="enter student adress"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        {/* <div class="form-group row">
+              </div>
+              <div class="card-body" id="bar-parent">
+                <form action="#" id="form_sample_1" class="form-horizontal">
+                  <div class="form-body">
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        First Name
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="firstName"
+                          data-required="1"
+                          placeholder="enter first name"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        Last Name
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="lastName"
+                          data-required="1"
+                          placeholder="enter last name"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">Email</label>
+                      <div class="col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control input-height"
+                            name="email"
+                            placeholder="Email Address"
+                            onChange={handleChange}
+                          />{" "}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        Age
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="number"
+                          name="age"
+                          data-required="1"
+                          placeholder="enter student age"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">Parent Phone</label>
+                      <div class="col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                          </span>
+                          <input
+                            type="number"
+                            class="form-control input-height"
+                            name="parentsPhone"
+                            placeholder="Enter Student Parent Phone"
+                            onChange={handleChange}
+                          />{" "}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        Address
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="adress"
+                          data-required="1"
+                          placeholder="enter student adress"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Joining Date
                                                 <span class="required">
@@ -302,7 +281,7 @@ const AddStudent = () => {
                                                 />
                                             </div>
                                         </div> */}
-                                        {/* <div class="form-group row">
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Subject
                                                 <span class="required">
@@ -338,7 +317,7 @@ const AddStudent = () => {
                                                 </select>
                                             </div>
                                         </div> */}
-                                        {/* <div class="form-group row">
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Gender
                                                 <span class="required">
@@ -462,34 +441,31 @@ const AddStudent = () => {
                                                 ></textarea>
                                             </div>
                                         </div> */}
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="offset-md-3 col-md-9">
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info m-r-20"
-                                                        onClick={handleSubmit}
-                                                    >
-                                                        Submit
-                                                    </button>
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-default"
-                                                    >
-                                                        Cancel
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="form-actions">
+                      <div class="row">
+                        <div class="offset-md-3 col-md-9">
+                          <button
+                            type="submit"
+                            class="btn btn-info m-r-20"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                          <button type="button" class="btn btn-default">
+                            Cancel
+                          </button>
                         </div>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AddStudent;

@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-const AddPersonel = () => {
-    const history = useHistory();
-    const [newPersonel, setNewPersonel] = useState();
-    const handleChange = (e) => {
-        setNewPersonel({ ...newPersonel, [e.target.name]: e.target.value });
-    };
+import url from "../../../utils/index";
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (
-            newPersonel.phone == "" ||
-            newPersonel.firstName == "" ||
-            newPersonel.lastName == "" ||
-            newPersonel.email == "" ||
-            newPersonel.position == ""
-        ) {
-            alert("Please add All fields");
-        } else {
-            axios
-                .post("/admin/addPersonel", newPersonel)
-                .then(() => history.push("/admin/personel"))
-                .catch((err) => console.log(err));
-        }
-    };
-    return (
-        <div class="page-content-wrapper">
-            <div class="page-content">
-                <div class="page-bar">
-                    {/* <div class="page-title-breadcrumb">
+const AddPersonel = () => {
+  const history = useHistory();
+  const [newPersonel, setNewPersonel] = useState();
+  const handleChange = (e) => {
+    setNewPersonel({ ...newPersonel, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      newPersonel.phone == "" ||
+      newPersonel.firstName == "" ||
+      newPersonel.lastName == "" ||
+      newPersonel.email == "" ||
+      newPersonel.position == ""
+    ) {
+      alert("Please add All fields");
+    } else {
+      axios
+        .post(`${url}/admin/addPersonel`, newPersonel)
+        .then(() => history.push("/admin/personel"))
+        .catch((err) => console.log(err));
+    }
+  };
+  return (
+    <div class="page-content-wrapper">
+      <div class="page-content">
+        <div class="page-bar">
+          {/* <div class="page-title-breadcrumb">
                         <div class=" pull-left">
                             <div class="page-title">Add Professor</div>
                         </div>
@@ -50,16 +52,13 @@ const AddPersonel = () => {
                             <li class="active">Add Professor</li>
                         </ol>
                     </div> */}
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div
-                            class="card card-box"
-                            style={{ marginTop: "50px" }}
-                        >
-                            <div class="card-head">
-                                <header>Basic Information</header>
-                                {/* <button
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="card card-box" style={{ marginTop: "50px" }}>
+              <div class="card-head">
+                <header>Basic Information</header>
+                {/* <button
                                     id="panel-button"
                                     class="mdl-button mdl-js-button mdl-button--icon pull-right"
                                     data-upgraded=",MaterialButton"
@@ -85,111 +84,94 @@ const AddPersonel = () => {
                                         Something else here
                                     </li>
                                 </ul> */}
-                            </div>
-                            <div class="card-body" id="bar-parent">
-                                <form
-                                    action="#"
-                                    id="form_sample_1"
-                                    class="form-horizontal"
-                                >
-                                    <div class="form-body">
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                First Name
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="firstName"
-                                                    data-required="1"
-                                                    placeholder="enter first name"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Last Name
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="lastName"
-                                                    data-required="1"
-                                                    placeholder="enter last name"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Email
-                                            </label>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </span>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control input-height"
-                                                        name="email"
-                                                        placeholder="Email Address"
-                                                        onChange={handleChange}
-                                                    />{" "}
-                                                </div>
-                                            </div>
-                                        </div>
+              </div>
+              <div class="card-body" id="bar-parent">
+                <form action="#" id="form_sample_1" class="form-horizontal">
+                  <div class="form-body">
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        First Name
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="firstName"
+                          data-required="1"
+                          placeholder="enter first name"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        Last Name
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="lastName"
+                          data-required="1"
+                          placeholder="enter last name"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">Email</label>
+                      <div class="col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control input-height"
+                            name="email"
+                            placeholder="Email Address"
+                            onChange={handleChange}
+                          />{" "}
+                        </div>
+                      </div>
+                    </div>
 
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Phone
-                                            </label>
-                                            <div class="col-md-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-phone"></i>
-                                                    </span>
-                                                    <input
-                                                        type="number"
-                                                        class="form-control input-height"
-                                                        name="phone"
-                                                        placeholder="Enter Phone"
-                                                        onChange={handleChange}
-                                                    />{" "}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">
-                                                Position
-                                                <span class="required">
-                                                    {" "}
-                                                    *{" "}
-                                                </span>
-                                            </label>
-                                            <div class="col-md-5">
-                                                <input
-                                                    type="text"
-                                                    name="position"
-                                                    data-required="1"
-                                                    placeholder="enter position"
-                                                    class="form-control input-height"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        {/* <div class="form-group row">
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">Phone</label>
+                      <div class="col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                          </span>
+                          <input
+                            type="number"
+                            class="form-control input-height"
+                            name="phone"
+                            placeholder="Enter Phone"
+                            onChange={handleChange}
+                          />{" "}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="control-label col-md-3">
+                        Position
+                        <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-5">
+                        <input
+                          type="text"
+                          name="position"
+                          data-required="1"
+                          placeholder="enter position"
+                          class="form-control input-height"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Joining Date
                                                 <span class="required">
@@ -283,7 +265,7 @@ const AddPersonel = () => {
                                                 />
                                             </div>
                                         </div> */}
-                                        {/* <div class="form-group row">
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Subject
                                                 <span class="required">
@@ -319,7 +301,7 @@ const AddPersonel = () => {
                                                 </select>
                                             </div>
                                         </div> */}
-                                        {/* <div class="form-group row">
+                    {/* <div class="form-group row">
                                             <label class="control-label col-md-3">
                                                 Gender
                                                 <span class="required">
@@ -443,34 +425,31 @@ const AddPersonel = () => {
                                                 ></textarea>
                                             </div>
                                         </div> */}
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="offset-md-3 col-md-9">
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-info m-r-20"
-                                                        onClick={handleSubmit}
-                                                    >
-                                                        Submit
-                                                    </button>
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-default"
-                                                    >
-                                                        Cancel
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="form-actions">
+                      <div class="row">
+                        <div class="offset-md-3 col-md-9">
+                          <button
+                            type="submit"
+                            class="btn btn-info m-r-20"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                          <button type="button" class="btn btn-default">
+                            Cancel
+                          </button>
                         </div>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AddPersonel;

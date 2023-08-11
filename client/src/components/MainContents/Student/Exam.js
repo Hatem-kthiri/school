@@ -7,6 +7,7 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import url from "../../../utils/index";
 
 const Exam = ({ toggle }) => {
   // hoook for the calendar events
@@ -19,7 +20,7 @@ const Exam = ({ toggle }) => {
   // axios function to getting the Exams Date
   const GetStudentExamsDate = async () => {
     try {
-      const CALENDAR = await axios.get(`/student/getExamDate/${ID}`);
+      const CALENDAR = await axios.get(`${url}/student/getExamDate/${ID}`);
       setCalendarEvent({ calendar: CALENDAR.data.data });
     } catch (err) {
       console.log(err);

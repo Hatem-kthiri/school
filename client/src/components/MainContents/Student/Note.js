@@ -4,6 +4,7 @@ import jwt from "jwt-decode";
 import Loader from "react-loader-spinner";
 
 import "./Note.css";
+import url from "../../../utils/index";
 
 const Note = ({ toggle }) => {
   // hooks for Student note
@@ -23,7 +24,7 @@ const Note = ({ toggle }) => {
   // function for getting the student absences
   const GetExamsNote = async () => {
     try {
-      const StudentNote = await axios.get(`/student/note/${id}`);
+      const StudentNote = await axios.get(`${url}/student/note/${id}`);
       setAllNotes({ Note: StudentNote.data.data });
     } catch (err) {
       console.log(err);
@@ -34,7 +35,6 @@ const Note = ({ toggle }) => {
     GetExamsNote();
   }, []);
 
-  console.log(allNotes);
   // ***End***
 
   // map the tbody from data base
