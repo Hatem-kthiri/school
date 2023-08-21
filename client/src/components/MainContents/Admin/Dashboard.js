@@ -147,7 +147,9 @@ const Dashboard = () => {
                 </span>
                 <div class="info-box-content">
                   <span class="info-box-text">Total Students</span>
-                  <span class="info-box-number">{students.length}</span>
+                  <span class="info-box-number">
+                    {students ? students.length : 0}
+                  </span>
                   <div class="progress">
                     <div class="progress-bar" style={{ width: "45%" }}></div>
                   </div>
@@ -164,7 +166,9 @@ const Dashboard = () => {
                 </span>
                 <div class="info-box-content">
                   <span class="info-box-text">Teachers</span>
-                  <span class="info-box-number">{teachers.length}</span>
+                  <span class="info-box-number">
+                    {teachers ? teachers.length : 0}
+                  </span>
                   <div class="progress">
                     <div class="progress-bar" style={{ width: "40%" }}></div>
                   </div>
