@@ -3,240 +3,215 @@ import { Bar, Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import axios from "axios";
 const Dashboard = () => {
-    const data = {
-        labels: ["1", "2", "3", "4", "5", "6"],
-        datasets: [
-            {
-                label: "# of Red Votes",
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: "rgb(255, 99, 132)",
-            },
-            {
-                label: "# of Blue Votes",
-                data: [2, 3, 20, 5, 1, 4],
-                backgroundColor: "rgb(54, 162, 235)",
-            },
-            {
-                label: "# of Green Votes",
-                data: [3, 10, 13, 15, 22, 30],
-                backgroundColor: "rgb(75, 192, 192)",
-            },
-        ],
-    };
+  const data = {
+    labels: ["1", "2", "3", "4", "5", "6"],
+    datasets: [
+      {
+        label: "# of Red Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "# of Blue Votes",
+        data: [2, 3, 20, 5, 1, 4],
+        backgroundColor: "rgb(54, 162, 235)",
+      },
+      {
+        label: "# of Green Votes",
+        data: [3, 10, 13, 15, 22, 30],
+        backgroundColor: "rgb(75, 192, 192)",
+      },
+    ],
+  };
 
-    const options = {
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
-                },
-            ],
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
         },
-    };
-    const [notifications, setNotifications] = useState([]);
-    const [personel, setPersonel] = useState([]);
-    const [teachers, setTeachers] = useState([]);
-    const [students, setStudents] = useState([]);
-    const [payments, setPayments] = useState([]);
+      ],
+    },
+  };
+  const [notifications, setNotifications] = useState([]);
+  const [personel, setPersonel] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [payments, setPayments] = useState([]);
 
-    useEffect(() => {
-        axios
-            .get("/getNotification")
-            .then((res) => setNotifications(res.data.data))
-            .catch((err) => console.log(err));
-        axios
-            .get("/administation/Allpersonel")
-            .then((res) => setPersonel(res.data.data));
-        axios
-            .get("/administation/AllTeachers")
-            .then((res) => setTeachers(res.data.data));
-        axios
-            .get("/administation/AllStudents")
-            .then((res) => setStudents(res.data.data));
-        axios
-            .get("/admin/getPayment")
-            .then((res) => setPayments(res.data.data));
-    }, []);
-    var sum = 0;
+  useEffect(() => {
+    axios
+      .get("/getNotification")
+      .then((res) => setNotifications(res.data.data))
+      .catch((err) => console.log(err));
+    axios
+      .get("/administation/Allpersonel")
+      .then((res) => setPersonel(res.data.data));
+    axios
+      .get("/administation/AllTeachers")
+      .then((res) => setTeachers(res.data.data));
+    axios
+      .get("/administation/AllStudents")
+      .then((res) => setStudents(res.data.data));
+    axios.get("/admin/getPayment").then((res) => setPayments(res.data.data));
+  }, []);
+  var sum = 0;
+  if (payments) {
     for (let i = 0; i < payments.length; i++) {
-        sum += +payments[i].amount;
-        console.log(payments[i].amount);
+      sum += +payments[i].amount;
     }
+  }
 
-    return (
-        // <div className="Alldashboard-admin">
-        //     <div className="all-cards">
-        //         <div className="one-card" id="card-color-1">
-        //             <div className="card-icon">
-        //                 <i class="fa fa-users"></i>
-        //             </div>
-        //             <div>
-        //                 <h5 className="info-box-text">Total Students</h5>
-        //                 <p className="info-box-number">450</p>
-        //                 <div class="progress">
-        //                     <div
-        //                         class="progress-bar"
-        //                         style={{ width: "45%" }}
-        //                     ></div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <div className="one-card" id="card-color-2">
-        //             <div className="card-icon">
-        //                 <i class="fa fa-chalkboard-teacher"></i>
-        //             </div>
-        //             <div>
-        //                 <h5 className="info-box-text">Total Teachers</h5>
-        //                 <p className="info-box-number">30</p>
-        //                 <div class="progress">
-        //                     <div
-        //                         class="progress-bar"
-        //                         style={{ width: "65%" }}
-        //                     ></div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <div className="one-card" id="card-color-3">
-        //             <div className="card-icon">
-        //                 <i class="fa fa-book"></i>
-        //             </div>
-        //             <div>
-        //                 <h5 className="info-box-text">Total Subjects</h5>
-        //                 <p className="info-box-number">30</p>
-        //                 <div class="progress">
-        //                     <div
-        //                         class="progress-bar"
-        //                         style={{ width: "85%" }}
-        //                     ></div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        //     <div className="charts-admin-dashboard">
-        //         <div className="Bar-charts">
-        //             <Bar data={data} options={options} />
-        //         </div>
-        //     </div>
-        // </div>
-        <div class="page-content-wrapper">
-            <div class="page-content">
-                <div class="page-bar">
-                    <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">Dashboard</div>
-                        </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li>
-                                <i class="fa fa-home"></i>&nbsp;
-                                <a class="parent-item" href="index.html">
-                                    Home
-                                </a>
-                                &nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">Dashboard</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="state-overview">
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6 col-12">
-                            <div class="info-box bg-b-green">
-                                <span class="info-box-icon push-bottom">
-                                    <i class="material-icons">group</i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">
-                                        Total Students
-                                    </span>
-                                    <span class="info-box-number">
-                                        {students.length}
-                                    </span>
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            style={{ width: "45%" }}
-                                        ></div>
-                                    </div>
-                                    {/* <span class="progress-description">
+  return (
+    // <div className="Alldashboard-admin">
+    //     <div className="all-cards">
+    //         <div className="one-card" id="card-color-1">
+    //             <div className="card-icon">
+    //                 <i class="fa fa-users"></i>
+    //             </div>
+    //             <div>
+    //                 <h5 className="info-box-text">Total Students</h5>
+    //                 <p className="info-box-number">450</p>
+    //                 <div class="progress">
+    //                     <div
+    //                         class="progress-bar"
+    //                         style={{ width: "45%" }}
+    //                     ></div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //         <div className="one-card" id="card-color-2">
+    //             <div className="card-icon">
+    //                 <i class="fa fa-chalkboard-teacher"></i>
+    //             </div>
+    //             <div>
+    //                 <h5 className="info-box-text">Total Teachers</h5>
+    //                 <p className="info-box-number">30</p>
+    //                 <div class="progress">
+    //                     <div
+    //                         class="progress-bar"
+    //                         style={{ width: "65%" }}
+    //                     ></div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //         <div className="one-card" id="card-color-3">
+    //             <div className="card-icon">
+    //                 <i class="fa fa-book"></i>
+    //             </div>
+    //             <div>
+    //                 <h5 className="info-box-text">Total Subjects</h5>
+    //                 <p className="info-box-number">30</p>
+    //                 <div class="progress">
+    //                     <div
+    //                         class="progress-bar"
+    //                         style={{ width: "85%" }}
+    //                     ></div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     <div className="charts-admin-dashboard">
+    //         <div className="Bar-charts">
+    //             <Bar data={data} options={options} />
+    //         </div>
+    //     </div>
+    // </div>
+    <div class="page-content-wrapper">
+      <div class="page-content">
+        <div class="page-bar">
+          <div class="page-title-breadcrumb">
+            <div class=" pull-left">
+              <div class="page-title">Dashboard</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+              <li>
+                <i class="fa fa-home"></i>&nbsp;
+                <a class="parent-item" href="index.html">
+                  Home
+                </a>
+                &nbsp;<i class="fa fa-angle-right"></i>
+              </li>
+              <li class="active">Dashboard</li>
+            </ol>
+          </div>
+        </div>
+        <div class="state-overview">
+          <div class="row">
+            <div class="col-xl-3 col-md-6 col-12">
+              <div class="info-box bg-b-green">
+                <span class="info-box-icon push-bottom">
+                  <i class="material-icons">group</i>
+                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Students</span>
+                  <span class="info-box-number">{students.length}</span>
+                  <div class="progress">
+                    <div class="progress-bar" style={{ width: "45%" }}></div>
+                  </div>
+                  {/* <span class="progress-description">
                                         45% Increase in 28 Days
                                     </span> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-12">
-                            <div class="info-box bg-b-yellow">
-                                <span class="info-box-icon push-bottom">
-                                    <i class="material-icons">person</i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Teachers</span>
-                                    <span class="info-box-number">
-                                        {teachers.length}
-                                    </span>
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            style={{ width: "40%" }}
-                                        ></div>
-                                    </div>
-                                    {/* <span class="progress-description">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12">
+              <div class="info-box bg-b-yellow">
+                <span class="info-box-icon push-bottom">
+                  <i class="material-icons">person</i>
+                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Teachers</span>
+                  <span class="info-box-number">{teachers.length}</span>
+                  <div class="progress">
+                    <div class="progress-bar" style={{ width: "40%" }}></div>
+                  </div>
+                  {/* <span class="progress-description">
                                         40% Increase in 28 Days
                                     </span> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-12">
-                            <div class="info-box bg-b-blue">
-                                <span class="info-box-icon push-bottom">
-                                    <i class="material-icons">school</i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Personal</span>
-                                    <span class="info-box-number">
-                                        {personel.length}
-                                    </span>
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            style={{ width: "85%" }}
-                                        ></div>
-                                    </div>
-                                    {/* <span class="progress-description">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12">
+              <div class="info-box bg-b-blue">
+                <span class="info-box-icon push-bottom">
+                  <i class="material-icons">school</i>
+                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Personal</span>
+                  <span class="info-box-number">{personel.length}</span>
+                  <div class="progress">
+                    <div class="progress-bar" style={{ width: "85%" }}></div>
+                  </div>
+                  {/* <span class="progress-description">
                                         85% Increase in 28 Days
                                     </span> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-12">
-                            <div class="info-box bg-b-pink">
-                                <span class="info-box-icon push-bottom">
-                                    <i class="material-icons">
-                                        monetization_on
-                                    </i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">
-                                        Fees Collection
-                                    </span>
-                                    <span class="info-box-number">{sum}</span>
-                                    <span> TND</span>
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            style={{ width: "50%" }}
-                                        ></div>
-                                    </div>
-                                    {/* <span class="progress-description">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12">
+              <div class="info-box bg-b-pink">
+                <span class="info-box-icon push-bottom">
+                  <i class="material-icons">monetization_on</i>
+                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Fees Collection</span>
+                  <span class="info-box-number">{sum}</span>
+                  <span> TND</span>
+                  <div class="progress">
+                    <div class="progress-bar" style={{ width: "50%" }}></div>
+                  </div>
+                  {/* <span class="progress-description">
                                         50% Increase in 28 Days
                                     </span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                {/* <div class="row">
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div class="row">
                     <div class="col-sm-6">
                         <div class="card card-box">
                             <div class="card-head">
@@ -290,7 +265,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div> */}
-                {/* <div class="row">
+        {/* <div class="row">
                     <div class="col-lg-3 col-md-6 col-12 col-sm-6">
                         <div class="blogThumb">
                             <div class="thumb-center">
@@ -468,7 +443,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div> */}
-                {/* <div class="row">
+        {/* <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="inbox">
                             <div class="card">
@@ -1045,7 +1020,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div> */}
-                {/* <div class="row">
+        {/* <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="card  card-box">
                             <div class="card-head">
@@ -1332,78 +1307,61 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div> */}
-                <div
-                    class="row"
+        <div
+          class="row"
+          style={{
+            marginBottom: "81px",
+          }}
+        >
+          <div class="col-md-12 col-sm-12">
+            <div class="card card-box">
+              <div class="card-head">
+                <header>Notification</header>
+              </div>
+              <div class="card-body" id="bar-parent">
+                <div id="form_sample_1" class="form-horizontal">
+                  <div
+                    class="form-body"
                     style={{
-                        marginBottom: "81px",
+                      overflowY: "auto",
+                      maxHeight: "600px",
                     }}
-                >
-                    <div class="col-md-12 col-sm-12">
-                        <div class="card card-box">
-                            <div class="card-head">
-                                <header>Notification</header>
-                            </div>
-                            <div class="card-body" id="bar-parent">
-                                <div id="form_sample_1" class="form-horizontal">
-                                    <div
-                                        class="form-body"
-                                        style={{
-                                            overflowY: "auto",
-                                            maxHeight: "600px",
-                                        }}
-                                    >
-                                        {notifications &&
-                                            notifications.map(
-                                                (notification) => {
-                                                    return (
-                                                        <>
-                                                            <div
-                                                                style={{
-                                                                    display:
-                                                                        "flex",
+                  >
+                    {notifications &&
+                      notifications.map((notification) => {
+                        return (
+                          <>
+                            <div
+                              style={{
+                                display: "flex",
 
-                                                                    alignItems:
-                                                                        "center",
-                                                                }}
-                                                            >
-                                                                <i class="fa fa-circle user-online"></i>
-                                                                <h4
-                                                                    style={{
-                                                                        marginRight:
-                                                                            "20px",
-                                                                        marginLeft:
-                                                                            "20px",
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        notification.title
-                                                                    }
-                                                                </h4>
-                                                                <span>
-                                                                    {notification.date.substr(
-                                                                        0,
-                                                                        10
-                                                                    )}
-                                                                </span>
-                                                            </div>
-                                                            <p>
-                                                                {
-                                                                    notification.description
-                                                                }
-                                                            </p>
-                                                        </>
-                                                    );
-                                                }
-                                            )}
-                                    </div>
-                                </div>
+                                alignItems: "center",
+                              }}
+                            >
+                              <i class="fa fa-circle user-online"></i>
+                              <h4
+                                style={{
+                                  marginRight: "20px",
+                                  marginLeft: "20px",
+                                }}
+                              >
+                                {notification.title}
+                              </h4>
+                              <span>{notification.date.substr(0, 10)}</span>
                             </div>
-                        </div>
-                    </div>
+                            <p>{notification.description}</p>
+                          </>
+                        );
+                      })}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
