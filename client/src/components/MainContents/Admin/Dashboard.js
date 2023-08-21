@@ -181,7 +181,9 @@ const Dashboard = () => {
                 </span>
                 <div class="info-box-content">
                   <span class="info-box-text">Personal</span>
-                  <span class="info-box-number">{personel.length}</span>
+                  <span class="info-box-number">
+                    {personel ? personel.length : 0}
+                  </span>
                   <div class="progress">
                     <div class="progress-bar" style={{ width: "85%" }}></div>
                   </div>
